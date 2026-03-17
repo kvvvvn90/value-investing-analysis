@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tesla Visual Investment Analysis Report (English)</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#07111f; --card:rgba(255,255,255,.06); --stroke:rgba(255,255,255,.10);
+  --text:#eef4ff; --muted:#9fb0cb; --green:#38d39f; --red:#ff6b7a; --gold:#f7c66b; --blue:#6ea8ff; --violet:#b28cff;
+}
+*{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Inter','Helvetica Neue',sans-serif;background:
+radial-gradient(1200px 700px at 15% -10%, rgba(83,131,255,.23), transparent 45%),
+radial-gradient(1000px 600px at 100% 0%, rgba(123,63,255,.20), transparent 40%),
+linear-gradient(180deg,var(--bg),#08121d 55%, #09131f);
+color:var(--text);}
+.container{max-width:1400px;margin:0 auto;padding:32px 24px 60px}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:stretch;margin-bottom:22px}
+.panel{background:var(--card); border:1px solid var(--stroke); border-radius:24px; backdrop-filter: blur(18px); box-shadow:0 10px 40px rgba(0,0,0,.28)}
+.hero-main{padding:30px 30px 28px; position:relative; overflow:hidden}
+.hero-main:before{content:'';position:absolute;inset:auto -80px -80px auto;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle, rgba(110,168,255,.28), transparent 62%)}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+h1{margin:16px 0 10px;font-size:44px;line-height:1.05;letter-spacing:-.03em}
+.sub{font-size:17px;line-height:1.7;color:#cad7ee;max-width:880px}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+.kpi{padding:18px;border-radius:18px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08)}
+.kpi .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.kpi .value{font-size:28px;font-weight:700;letter-spacing:-.02em}
+.kpi .hint{margin-top:8px;font-size:12px;color:var(--muted)}
+.scorecard{padding:24px;display:flex;flex-direction:column;justify-content:space-between}
+.badge{display:inline-flex;padding:7px 12px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.badge.watch{background:rgba(247,198,107,.14);color:var(--gold);border:1px solid rgba(247,198,107,.35)}
+.badge.narrow{background:rgba(110,168,255,.14);color:var(--blue);border:1px solid rgba(110,168,255,.30)}
+.badge.hot{background:rgba(255,107,122,.12);color:var(--red);border:1px solid rgba(255,107,122,.30)}
+.score-title{font-size:14px;color:var(--muted);margin:18px 0 6px}
+.score-value{font-size:40px;font-weight:800;letter-spacing:-.03em}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.col-8{grid-column:span 8} .col-4{grid-column:span 4} .col-6{grid-column:span 6} .col-12{grid-column:span 12}
+.card{padding:22px}
+.card h2{margin:0 0 14px;font-size:22px;letter-spacing:-.02em}
+.chart{height:380px}
+.chart.small{height:300px}
+.table{width:100%;border-collapse:collapse;font-size:14px;overflow:hidden}
+.table th,.table td{padding:12px 10px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left;vertical-align:top}
+.table th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.prose{color:#d6e2f8;line-height:1.78;font-size:15px}
+.prose p{margin:0 0 12px}
+.callout{padding:16px 18px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04)); border:1px solid rgba(255,255,255,.10)}
+.two-col{columns:2;column-gap:22px}
+.footer{margin-top:26px;color:var(--muted);font-size:13px;line-height:1.7}
+@media (max-width:1100px){.hero{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(2,1fr)}.col-8,.col-4,.col-6,.col-12{grid-column:span 12}.two-col{columns:1}}
+@media (max-width:640px){h1{font-size:34px} .container{padding:20px 14px 42px} .kpi-grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<div class="container">
+  <section class="hero">
+    <div class="panel hero-main">
+      <div class="eyebrow">Tesla / TSLA · Value Investing Analysis</div>
+      <h1>Visual Investment Analysis Report</h1>
+      <div class="sub">This is a decision-oriented visual version of the Tesla memo, integrating valuation, profitability, cash flow, moat strength, and cycle positioning into one premium layout. The headline conclusion is straightforward: <b>Tesla is a high-quality business, but the current price reflects elevated expectations rather than a classic margin of safety.</b></div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="label">Current Price</div><div class="value">$395.56</div><div class="hint">Latest close</div></div>
+        <div class="kpi"><div class="label">Market Cap</div><div class="value">$1.484T</div><div class="hint">Current market value</div></div>
+        <div class="kpi"><div class="label">TTM Revenue</div><div class="value">$136.66B</div><div class="hint">Latest four quarters</div></div>
+        <div class="kpi"><div class="label">TTM FCF</div><div class="value">$6.22B</div><div class="hint">CFO - Capex</div></div>
+      </div>
+    </div>
+    <div class="panel scorecard">
+      <div>
+        <span class="badge watch">Primary Action: Watch / Hold</span>
+        <div class="score-title">Valuation Temperature</div>
+        <div class="score-value" style="color:var(--red)">Hot</div>
+        <div class="score-title">Moat Rating</div>
+        <div><span class="badge narrow">Narrow Moat</span></div>
+        <div class="score-title">Cycle Position</div>
+        <div><span class="badge hot">Overheated Valuation / Narrative</span></div>
+      </div>
+      <div class="callout">
+        <div style="font-size:13px;color:var(--muted);margin-bottom:8px">One-line verdict</div>
+        <div style="font-size:16px;line-height:1.7;color:#eff5ff">Strong company quality, but the stock already prices in a large amount of future narrative upside. Reasonable for long-term growth investors to watch or hold; not attractive as a classic Graham-style value entry.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="panel card col-8">
+      <h2>Quarterly Operating Trend</h2>
+      <div id="qChart" class="chart"></div>
+    </div>
+    <div class="panel card col-4">
+      <h2>Market Price vs Intrinsic Value</h2>
+      <div id="valChart" class="chart small"></div>
+    </div>
+
+    <div class="panel card col-6">
+      <h2>Framework Comparison Matrix</h2>
+      <table class="table">
+        <thead><tr><th>Framework</th><th>Conclusion</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Graham Margin-of-Safety Valuation</td><td>Clearly expensive</td><td>Both the Graham Number and DCF outputs sit far below the current share price.</td></tr>
+          <tr><td>Buffett Moat Analysis</td><td>Real moat, but not wide</td><td>Brand, charging ecosystem, software integration, and manufacturing scale matter, but competition is closing in.</td></tr>
+          <tr><td>Howard Marks Cycle Thinking</td><td>Valuation and narrative are hot</td><td>The multiple is more vulnerable to reversal than the franchise itself.</td></tr>
+        </tbody>
+      </table>
+      <div class="prose" style="margin-top:14px">
+        <p><b>The key debate</b> is not whether Tesla is a good company. The real question is whether the stock price has already pulled a large part of autonomy, robotaxi, and energy-platform upside into the present.</p>
+      </div>
+    </div>
+
+    <div class="panel card col-6">
+      <h2>Key Metrics Dashboard</h2>
+      <table class="table">
+        <thead><tr><th>Metric</th><th>Value</th><th>Interpretation</th></tr></thead>
+        <tbody>
+          <tr><td>P/E</td><td>335.22x</td><td>High: the market is paying for distant expectations, not just current earnings.</td></tr>
+          <tr><td>P/S</td><td>17.90x</td><td>Far above traditional automaker valuation logic.</td></tr>
+          <tr><td>Graham Number</td><td>$26.79</td><td>A large gap versus market price; classical value discipline does not support the current level.</td></tr>
+          <tr><td>DCF Base</td><td>$37.79</td><td>Even under favorable growth assumptions, intrinsic value still trails the market price materially.</td></tr>
+          <tr><td>TTM SBC</td><td>$4.03B</td><td>Stock-based compensation remains meaningful and can erode per-share value creation.</td></tr>
+          <tr><td>TTM Operating Income</td><td>$5.68B</td><td>Profitability remains positive, but not enough on its own to justify the current multiple.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel card col-6">
+      <h2>Quarterly Margin Structure</h2>
+      <div id="marginChart" class="chart small"></div>
+    </div>
+
+    <div class="panel card col-6">
+      <h2>Action Guidance</h2>
+      <div class="prose">
+        <div class="callout" style="margin-bottom:16px">
+          <p><b>For investors with no position:</b> <b>Watch</b> is the better stance. A better entry price or cleaner earnings / FCF confirmation would improve the setup materially.</p>
+          <p><b>For investors with an existing position:</b> <b>Hold</b> is reasonable if the thesis is long-duration growth rather than near-term value realization.</p>
+        </div>
+        <p><b>What not to do:</b> treat Tesla like a conventional undervalued value stock. That is not how the market is pricing it today.</p>
+        <p><b>What it is better viewed as:</b> a high-quality, high-optionality, high-volatility growth asset with meaningful multiple risk.</p>
+      </div>
+    </div>
+
+    <div class="panel card col-12">
+      <h2>Risk Map</h2>
+      <div class="prose two-col">
+        <p><b>1. Narrative delivery risk:</b> if autonomy, robotaxi, or energy monetization arrives slower than the market expects, the multiple could compress first.</p>
+        <p><b>2. Price-war risk:</b> EV competition remains intense, and gross-margin recovery is not guaranteed to be smooth.</p>
+        <p><b>3. Competitive catch-up:</b> Chinese EV makers, legacy OEMs, and other platforms continue to narrow Tesla’s relative edge.</p>
+        <p><b>4. Dilution risk:</b> TTM SBC is still meaningful; if buybacks do not offset dilution, per-share value creation weakens.</p>
+        <p><b>5. Style-rotation risk:</b> if market risk appetite drops, high-multiple assets usually re-rate downward quickly.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    Data sources: SEC Company Facts / Stooq / CompaniesMarketCap / StockAnalysis.<br>
+    This page is a presentation layer built from the same markdown memo and structured data files in the folder.
+  </div>
+</div>
+<script>
+const labels = ["Q1 2025", "Q2 2025", "Q3 2025", "Q4 2025"];
+const revenue = [19.34, 22.5, 28.09, 66.73];
+const netIncome = [0.42, 1.19, 1.39, 2.47];
+const fcf = [0.66, 0.15, 3.99, 1.42];
+const gm = [16.3, 17.2, 18.0, 18.0];
+const om = [2.1, 4.1, 5.8, 4.1];
+
+const chartTheme = {
+  textStyle: {color:'#dbe7ff'},
+  grid: {left:56,right:24,top:40,bottom:42},
+  tooltip: {trigger:'axis', backgroundColor:'rgba(8,15,25,.96)', borderColor:'rgba(255,255,255,.12)', textStyle:{color:'#eef4ff'}},
+  legend: {top:0, textStyle:{color:'#b8c7e2'}},
+  xAxis: {axisLabel:{color:'#9fb0cb'}, axisLine:{lineStyle:{color:'rgba(255,255,255,.12)'}}},
+  yAxis: {axisLabel:{color:'#9fb0cb'}, splitLine:{lineStyle:{color:'rgba(255,255,255,.08)'}}}
+};
+const qChart = echarts.init(document.getElementById('qChart'));
+qChart.setOption({
+  ...chartTheme,
+  legend: {...chartTheme.legend, data:['Revenue','Net Income','FCF']},
+  xAxis: {type:'category', data:labels, ...chartTheme.xAxis},
+  yAxis: {type:'value', name:'USD (Bn)', ...chartTheme.yAxis},
+  series: [
+    {name:'Revenue', type:'bar', data:revenue, itemStyle:{color:'#6ea8ff', borderRadius:[8,8,0,0]}},
+    {name:'Net Income', type:'line', smooth:true, data:netIncome, symbolSize:9, lineStyle:{width:3,color:'#38d39f'}, itemStyle:{color:'#38d39f'}},
+    {name:'FCF', type:'line', smooth:true, data:fcf, symbolSize:9, lineStyle:{width:3,color:'#f7c66b'}, itemStyle:{color:'#f7c66b'}}
+  ]
+});
+const valChart = echarts.init(document.getElementById('valChart'));
+valChart.setOption({
+  ...chartTheme,
+  grid: {left:80,right:20,top:20,bottom:30},
+  xAxis: {type:'value', ...chartTheme.xAxis},
+  yAxis: {type:'category', data:['Optimistic DCF','Base DCF','Conservative DCF','Graham Number','Current Price'], ...chartTheme.yAxis},
+  series: [{
+    type:'bar',
+    data:[64.45,37.79,23.31,26.79,395.56],
+    itemStyle:{color:(p)=>['#b28cff','#6ea8ff','#38d39f','#f7c66b','#ff6b7a'][p.dataIndex], borderRadius:[0,10,10,0]}
+  }]
+});
+const marginChart = echarts.init(document.getElementById('marginChart'));
+marginChart.setOption({
+  ...chartTheme,
+  legend: {...chartTheme.legend, data:['Gross Margin','Operating Margin']},
+  xAxis: {type:'category', data:labels, ...chartTheme.xAxis},
+  yAxis: {type:'value', name:'%', ...chartTheme.yAxis},
+  series: [
+    {name:'Gross Margin', type:'line', smooth:true, data:gm, symbolSize:8, areaStyle:{opacity:.08,color:'#6ea8ff'}, lineStyle:{width:3,color:'#6ea8ff'}, itemStyle:{color:'#6ea8ff'}},
+    {name:'Operating Margin', type:'line', smooth:true, data:om, symbolSize:8, areaStyle:{opacity:.06,color:'#38d39f'}, lineStyle:{width:3,color:'#38d39f'}, itemStyle:{color:'#38d39f'}}
+  ]
+});
+window.addEventListener('resize',()=>[qChart,valChart,marginChart].forEach(c=>c.resize()));
+</script>
+</body>
+</html>
